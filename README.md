@@ -35,8 +35,8 @@ Code: 8_Python_sort_mergeBAM copy.txt
 9) Compute matrix = measure signal across selected reagions in each sample  
 Code: 9_Python_computeMatrix.py  
 
-10) Perform differential binding analysis using EdgeR  
-10_R_DE-analysis.R  
+10) Perform differential binding analysis using EdgeR
+Code: 10_R_DE-analysis.R   
 
 # Gene lists:  
 group1 - lose binding during normal differentiation  
