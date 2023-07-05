@@ -1,0 +1,204 @@
+{
+    "a_galaxy_workflow": "true",
+    "annotation": "Clean output from bowtie2 for further analysis. steps include sort, filter, remove duplicates",
+    "format-version": "0.1",
+    "name": "Cut&Tag_filter+clean",
+    "steps": {
+        "0": {
+            "annotation": "Input: bowtie2 alignment files for mouse",
+            "content_id": null,
+            "errors": null,
+            "id": 0,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "Input: bowtie2 alignment files for mouse",
+                    "name": "input: bowtie2.bam"
+                }
+            ],
+            "label": "input: bowtie2.bam",
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "left": 178,
+                "top": 200
+            },
+            "tool_id": null,
+            "tool_state": "{\"optional\": false}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "f75dc42a-d85a-40dc-8235-5d4ffebcd77b",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "output",
+                    "uuid": "50a25194-feb4-4358-a31d-9ebc5a9eb81f"
+                }
+            ]
+        },
+        "1": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/devteam/samtools_sort/samtools_sort/2.0.3",
+            "errors": null,
+            "id": 1,
+            "input_connections": {
+                "input1": {
+                    "id": 0,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": "Sort reads by coordinate",
+            "name": "Samtools sort",
+            "outputs": [
+                {
+                    "name": "output1",
+                    "type": "bam"
+                }
+            ],
+            "position": {
+                "left": 222,
+                "top": 289
+            },
+            "post_job_actions": {
+                "DeleteIntermediatesActionoutput1": {
+                    "action_arguments": {},
+                    "action_type": "DeleteIntermediatesAction",
+                    "output_name": "output1"
+                },
+                "HideDatasetActionoutput1": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "output1"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/devteam/samtools_sort/samtools_sort/2.0.3",
+            "tool_shed_repository": {
+                "changeset_revision": "e613c1ad4c4c",
+                "name": "samtools_sort",
+                "owner": "devteam",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"input1\": {\"__class__\": \"ConnectedValue\"}, \"prim_key_cond\": {\"prim_key_select\": \"\", \"__current_case__\": 0}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "2.0.3",
+            "type": "tool",
+            "uuid": "f6f0ca68-2f11-49fc-bf3a-66f33550e958",
+            "workflow_outputs": []
+        },
+        "2": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/ngsutils_bam_filter/ngsutils_bam_filter/0.5.9",
+            "errors": null,
+            "id": 2,
+            "input_connections": {
+                "infile": {
+                    "id": 1,
+                    "output_name": "output1"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool BAM filter",
+                    "name": "excludebed"
+                },
+                {
+                    "description": "runtime parameter for tool BAM filter",
+                    "name": "includebed"
+                }
+            ],
+            "label": "Keep pair-end reads",
+            "name": "BAM filter",
+            "outputs": [
+                {
+                    "name": "outfile",
+                    "type": "bam"
+                }
+            ],
+            "position": {
+                "left": 358,
+                "top": 433
+            },
+            "post_job_actions": {
+                "DeleteIntermediatesActionoutfile": {
+                    "action_arguments": {},
+                    "action_type": "DeleteIntermediatesAction",
+                    "output_name": "outfile"
+                },
+                "HideDatasetActionoutfile": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "outfile"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/ngsutils_bam_filter/ngsutils_bam_filter/0.5.9",
+            "tool_shed_repository": {
+                "changeset_revision": "2e957d4c4b95",
+                "name": "ngsutils_bam_filter",
+                "owner": "iuc",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"excludebed\": {\"__class__\": \"RuntimeValue\"}, \"excluderef\": \"\", \"ignore_strand\": \"false\", \"includebed\": {\"__class__\": \"RuntimeValue\"}, \"includeref\": \"\", \"infile\": {\"__class__\": \"ConnectedValue\"}, \"mapped\": \"true\", \"mask\": \"\", \"maximum_mismatch_ratio\": null, \"maxlen\": null, \"minlen\": null, \"mismatch\": null, \"nopcrdup\": \"false\", \"noproperpair\": \"false\", \"noqcfail\": \"true\", \"nosecondary\": \"true\", \"properpair\": \"true\", \"uniq\": \"-1\", \"uniq_start\": \"false\", \"unmapped\": \"false\", \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "0.5.9",
+            "type": "tool",
+            "uuid": "3a5d0c54-da04-424c-aa7b-8e100e82e0bc",
+            "workflow_outputs": []
+        },
+        "3": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/devteam/picard/picard_MarkDuplicatesWithMateCigar/2.18.2.1",
+            "errors": null,
+            "id": 3,
+            "input_connections": {
+                "inputFile": {
+                    "id": 2,
+                    "output_name": "outfile"
+                }
+            },
+            "inputs": [],
+            "label": "Remove PCR duplicates",
+            "name": "MarkDuplicatesWithMateCigar",
+            "outputs": [
+                {
+                    "name": "metrics_file",
+                    "type": "txt"
+                },
+                {
+                    "name": "outFile",
+                    "type": "bam"
+                }
+            ],
+            "position": {
+                "left": 597,
+                "top": 636
+            },
+            "post_job_actions": {
+                "HideDatasetActionmetrics_file": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "metrics_file"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/devteam/picard/picard_MarkDuplicatesWithMateCigar/2.18.2.1",
+            "tool_shed_repository": {
+                "changeset_revision": "a1f0b3f4b781",
+                "name": "picard",
+                "owner": "devteam",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"assume_sorted\": \"true\", \"comment\": \"\", \"duplicate_scoring_strategy\": \"TOTAL_MAPPED_REFERENCE_LENGTH\", \"inputFile\": {\"__class__\": \"ConnectedValue\"}, \"minimum_distance\": \"-1\", \"optical_duplicate_pixel_distance\": \"100\", \"read_name_regex\": \"[a-zA-Z0-9]+:[0-9]:([0-9]+):([0-9]+):([0-9]+).*.\", \"remove_duplicates\": \"true\", \"skip_pairs_with_no_mate_cigar\": \"true\", \"validation_stringency\": \"LENIENT\", \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "2.18.2.1",
+            "type": "tool",
+            "uuid": "9a8c9cf3-cd6b-4cf2-88bd-43bbc5bb9609",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "outFile",
+                    "uuid": "12264d4f-026a-4344-844a-5392e5f325f9"
+                }
+            ]
+        }
+    },
+    "tags": [],
+    "uuid": "ec2611ae-8c62-4a98-bb0b-996dd3027058",
+    "version": 3
+}
