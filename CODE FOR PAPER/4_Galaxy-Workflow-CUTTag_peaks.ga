@@ -1,0 +1,131 @@
+{
+    "a_galaxy_workflow": "true",
+    "annotation": "Use Sparse Enrichment analysis to find peaks in Cut&amp;Tag datasets",
+    "format-version": "0.1",
+    "name": "CutTag_peaks",
+    "steps": {
+        "0": {
+            "annotation": "",
+            "content_id": null,
+            "errors": null,
+            "id": 0,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "Input bed graph x3"
+                }
+            ],
+            "label": "Input bed graph x3",
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "left": 207,
+                "top": 182
+            },
+            "tool_id": null,
+            "tool_state": "{\"optional\": false}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "88b6a499-7352-4b85-aa61-ea9470fe0c69",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "output",
+                    "uuid": "6947274b-f6da-4c1f-9412-b401ee1614d9"
+                }
+            ]
+        },
+        "1": {
+            "annotation": "",
+            "content_id": null,
+            "errors": null,
+            "id": 1,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "Input IgG bedgraph x3"
+                }
+            ],
+            "label": "Input IgG bedgraph x3",
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "left": 200,
+                "top": 306
+            },
+            "tool_id": null,
+            "tool_state": "{\"optional\": false}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "de66d5b9-9329-4d93-939e-a081c81949bd",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "output",
+                    "uuid": "e8b63042-863f-476a-b3a5-fbeff4c21d32"
+                }
+            ]
+        },
+        "2": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/seacr/seacr/1.3+galaxy1",
+            "errors": null,
+            "id": 2,
+            "input_connections": {
+                "bedgraph": {
+                    "id": 0,
+                    "output_name": "output"
+                },
+                "control_cond|f": {
+                    "id": 1,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "SEACR",
+            "outputs": [
+                {
+                    "name": "out_s",
+                    "type": "tabular"
+                }
+            ],
+            "position": {
+                "left": 501,
+                "top": 242
+            },
+            "post_job_actions": {
+                "RenameDatasetActionout_r": {
+                    "action_arguments": {
+                        "newname": "Peaks"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "out_r"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/seacr/seacr/1.3+galaxy1",
+            "tool_shed_repository": {
+                "changeset_revision": "66b7657f0bd6",
+                "name": "seacr",
+                "owner": "iuc",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"bedgraph\": {\"__class__\": \"ConnectedValue\"}, \"control_cond\": {\"control_sel\": \"f\", \"__current_case__\": 0, \"f\": {\"__class__\": \"ConnectedValue\"}}, \"mode\": \"stringent\", \"normalize\": \"false\", \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "1.3+galaxy1",
+            "type": "tool",
+            "uuid": "d4654c7c-34bb-44d6-af69-001b76a4a160",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "out_s",
+                    "uuid": "ac211574-f8c4-408a-97cf-66beb2a1b55e"
+                }
+            ]
+        }
+    },
+    "tags": [],
+    "uuid": "8f39c768-3fd7-4533-8827-70093b797a0e",
+    "version": 3
+}
