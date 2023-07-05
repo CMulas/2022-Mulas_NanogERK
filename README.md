@@ -38,7 +38,7 @@ Code: 9_Python_computeMatrix.py
 10) Perform differential binding analysis using EdgeR
 Code: 10_R_DE-analysis.R   
 
-# Gene lists:  
+# List of differentially bound regions  
 group1 - lose binding during normal differentiation  
 group2 - gain binding during normal differentiation  
 group3 - maintain binding during normal differentiation  
