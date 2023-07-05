@@ -1,9 +1,0 @@
-### 8. sort and merge overlapping peak regions
-
-cd /Users/Carla/Documents/chip-seq/DE_peaks/peaks/clean/
-
-sortBed -i 3-H3K27me3promoter_peaks.txt > 4-H3K27me3promoter_peaks.txtsortBed -i 3-H3K27me3enhancer_peaks.txt > 4-H3K27me3enhancer_peaks.txtsortBed -i 3-H3K4me1promoters_peaks.txt > 4-H3K4me1promoters_peaks.txtsortBed -i 3-H3K4me1enhancer_peaks.txt > 4-H3K4me1enhancer_peaks.txt
-
-
-
-mergeBED -i 4-H3K27me3promoter_peaks.txt > 5-H3K27me3promoter_peaks.txtmergeBED -i 4-H3K27me3enhancer_peaks.txt > 5-H3K27me3enhancer_peaks.txtmergeBED -i 4-H3K4me1promoters_peaks.txt > 5-H3K4me1promoters_peaks.txtmergeBED -i 4-H3K4me1enhancer_peaks.txt > 5-H3K4me1enhancer_peaks.txt
