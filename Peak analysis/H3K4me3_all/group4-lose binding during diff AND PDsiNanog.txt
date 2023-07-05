@@ -1,0 +1,1 @@
+regionID	logFC	logCPM	F	PValue	FDR	V1	V2	V3	V4	DMSO1	DMSO2	DMSO3	PDsiNanog1	PDsiNanog2	PDsiNanog3	t2i1	t2i2	t2i3
